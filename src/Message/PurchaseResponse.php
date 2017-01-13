@@ -25,7 +25,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      * @return string
      */
     public function getRedirectUrl() {
-        return $this->getRequest()->getEndpoint() . 'pay.shtml?' . http_build_query($this->getRedirectData());
+        return $this->getRequest()->getEndpoint() . 'skipDetails.shtml?' . http_build_query($this->getRedirectData());
     }
 
     /**

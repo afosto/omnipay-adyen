@@ -24,6 +24,8 @@ class PurchaseRequest extends AbstractRequest {
         $data['blockedMethods'] = '';
         $data['countryCode'] = $this->getCard()->getCountry();
         $data['resURL'] = $this->getReturnUrl();
+        $data['brandCode'] = $this->getPaymentMethod();
+        $data['issuerId'] = $this->getIssuer();
         $data['merchantSig'] = $this->generateSignature($data);
 
         return $data;
