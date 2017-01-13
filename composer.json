@@ -1,0 +1,22 @@
+{
+    "name": "afosto/omnipay-adyen",
+    "type": "library",
+    "description": "Adyen driver for the Omnipay payment processing library",
+    "keywords": [
+        "adyen",
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment"
+    ],
+    "autoload": {
+        "psr-4": { "Omnipay\\Adyen\\" : "src/" }
+    },
+    "require": {
+        "omnipay/common": "~2.2"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    }
+}
