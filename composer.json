@@ -10,6 +10,13 @@
         "pay",
         "payment"
     ],
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Afosto Team",
+            "homepage": "https://afosto.com"
+        }
+    ],
     "autoload": {
         "psr-4": { "Omnipay\\Adyen\\" : "src/" }
     },
