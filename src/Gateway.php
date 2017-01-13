@@ -62,4 +62,8 @@ class Gateway extends \Omnipay\Common\AbstractGateway {
     public function fetchPaymentMethods(array $parameters = array()) {
         return $this->createRequest('\Omnipay\Adyen\Message\FetchPaymentMethodsRequest', $parameters);
     }
+
+    public function fetchIssuers(array $parameters = array()) {
+        return $this->createRequest('\Omnipay\Adyen\Message\FetchIssuersRequest', $parameters);
+    }
 }
