@@ -52,22 +52,10 @@ class Gateway extends \Omnipay\Common\AbstractGateway {
     }
 
     public function purchase(array $parameters = []) {
-        return $this->createRequest('AdyenPurchaseRequest', $parameters);
+        return $this->createRequest('Omnipay\Adyen\Message\PurchaseRequest', $parameters);
     }
 
     public function completePurchase(array $parameters = []) {
-        return $this->createRequest('AdyenCompletePurchaseRequest', $parameters);
-    }
-
-    /**
-     * Send the request with specified data.
-     * Adyen is a Off-site gateway - No need to send request, instead we need to redirect customer to Adyen site
-     *
-     * @param  mixed $data The data to send
-     *
-     * @return ResponseInterface
-     */
-    public function sendData($data) {
-        return $this->response = new PurchasNeResponse($this, $data);
+        return $this->createRequest('Omnipay\Adyen\Message\CompletePurchaseRequest', $parameters);
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
-namespace Omnipay\Adyen\Message
+namespace Omnipay\Adyen\Message;
+
+use Omnipay\Common\Message\ResponseInterface;
 
 class PurchaseRequest extends AbstractRequest {
 
@@ -39,6 +41,6 @@ class PurchaseRequest extends AbstractRequest {
      * @return ResponseInterface
      */
     public function sendData($data) {
-        return $this->response = new PurchasNeResponse($this, $data);
+        return $this->response = new PurchaseResponse($this, $data);
     }
 }
