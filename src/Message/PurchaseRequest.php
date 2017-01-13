@@ -7,10 +7,9 @@ use Omnipay\Common\Message\ResponseInterface;
 class PurchaseRequest extends AbstractRequest {
 
     public function getData() {
-        $this->validate('secret', 'amount', 'secret', 'sessionLifetime', 'merchantAccount', 'skinCode', 'daysToShipping');
+        $this->validate('secret', 'amount', 'sessionLifetime', 'merchantAccount', 'skinCode', 'daysToShipping');
         $data = [];
 
-        // Compulsory fields (needed to compute the signature)
         $data['paymentAmount'] = $this->getAmountInteger();
         $data['currencyCode'] = $this->getCurrency();
         $data['shipBeforeDate'] = $this->getShipBeforeDate();
