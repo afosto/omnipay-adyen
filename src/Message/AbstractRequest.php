@@ -48,23 +48,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest {
     }
 
     public function generateSignature($data) {
-        // The data that needs to be signed is a concatenated string of the form data (except the order data)
-        $sign = $data['paymentAmount'] .
-            $data['currencyCode'] .
-            $data['shipBeforeDate'] .
-            $data['merchantReference'] .
-            $data['skinCode'] .
-            $data['merchantAccount'] .
-            $data['sessionValidity'] .
-            $data['shopperEmail'] .
-            $data['shopperReference'] .
-            $data['recurringContract'] .
-            $data['allowedMethods'] .
-            $data['blockedMethods'];
+        // Sort the array by key using SORT_STRING order
+        ksort($data, SORT_STRING);
 
-        // base64 encoding is necessary because the string needs to be send over the internet and
-        // the hexadecimal result of the HMAC encryption could include escape characters
-        return base64_encode(hash_hmac('sha256', $sign, pack("H*", $this->getSecret()), true));
+        // Generate the signing data string
+        $signData = implode(":", array_map(function ($val) {
+            return str_replace(':', '\\:', str_replace('\\', '\\\\', $val));
+        }, array_merge(array_keys($data), array_values($data))));
+
+        // base64-encode the binary result of the HMAC computation
+        return base64_encode(hash_hmac('sha256', $signData, pack("H*", $this->getSecret()), true));
     }
 
     public function getShipBeforeDate() {

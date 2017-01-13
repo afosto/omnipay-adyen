@@ -14,7 +14,7 @@ class PurchaseRequest extends AbstractRequest {
         $data['paymentAmount'] = $this->getAmountInteger();
         $data['currencyCode'] = $this->getCurrency();
         $data['shipBeforeDate'] = $this->getShipBeforeDate();
-        $data['merchantReference'] = $this->getTransactionReference();
+        $data['merchantReference'] = $this->getTransactionId();
         $data['skinCode'] = $this->getSkinCode();
         $data['merchantAccount'] = $this->getMerchantAccount();
         $data['sessionValidity'] = $this->getSessionValidity();
@@ -23,11 +23,9 @@ class PurchaseRequest extends AbstractRequest {
         $data['recurringContract'] = 'ONECLICK';
         $data['allowedMethods'] = '';
         $data['blockedMethods'] = '';
-        $data['merchantSig'] = $this->generateSignature($data);
-
-        // Optional fields (Not needed in signature)
         $data['countryCode'] = $this->getCard()->getCountry();
         $data['resURL'] = $this->getReturnUrl();
+        $data['merchantSig'] = $this->generateSignature($data);
 
         return $data;
     }
