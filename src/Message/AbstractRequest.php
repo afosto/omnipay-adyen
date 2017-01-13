@@ -120,7 +120,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest {
      * @return string
      */
     public function getSessionValidity() {
-        return date('c', strtotime($this->getSessionLifetime()));
+        return date('c', time() + ($this->getSessionLifetime() * 60));
     }
 
     /**
