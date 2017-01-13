@@ -5,6 +5,13 @@ namespace Omnipay\Adyen;
 class Gateway extends \Omnipay\Common\AbstractGateway {
 
     /**
+     * @return string
+     */
+    public function getName() {
+        return 'Adyen';
+    }
+
+    /**
      * @return array
      */
     public function getDefaultParameters() {
