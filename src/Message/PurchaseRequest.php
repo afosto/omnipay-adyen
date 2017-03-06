@@ -25,7 +25,7 @@ class PurchaseRequest extends AbstractRequest {
         $data['countryCode'] = $this->getCard()->getCountry();
         $data['resURL'] = $this->getReturnUrl();
         $data['brandCode'] = $this->getPaymentMethod();
-        $data['issuerId'] = $this->getIssuer();
+        $data['issuerId'] = (($this->getIssuer() === null) ? '' : $this->getIssuer());
         $data['merchantSig'] = $this->generateSignature($data);
 
         return $data;
