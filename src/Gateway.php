@@ -21,6 +21,7 @@ class Gateway extends \Omnipay\Common\AbstractGateway {
             'merchantAccount' => '',
             'skinCode'        => '',
             'daysToShipping'  => '10',
+            'webhookSecret' => '',
         ];
     }
 
