@@ -16,7 +16,6 @@ class Gateway extends \Omnipay\Common\AbstractGateway {
      */
     public function getDefaultParameters() {
         return [
-            'testMode'        => true,
             'secret'          => '',
             'sessionLifetime' => '',
             'merchantAccount' => '',
