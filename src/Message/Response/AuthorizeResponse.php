@@ -57,7 +57,7 @@ class AuthorizeResponse extends AbstractAdyenResponse implements RedirectRespons
      */
     public function isRedirect()
     {
-        return isset($data['action']) && isset($data['action']['type']) && $data['action']['type'] == 'redirect';
+        return isset($this->data['action']) && isset($this->data['action']['type']) && $this->data['action']['type'] == 'redirect';
     }
 
     /**

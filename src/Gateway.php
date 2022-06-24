@@ -2,6 +2,7 @@
 
 namespace Omnipay\Adyen;
 
+use Omnipay\Adyen\Message\Request\ApiTrait;
 use Omnipay\Adyen\Message\Request\CompleteAuthorizeRequest;
 use Omnipay\Adyen\Message\Request\ContextTrait;
 use Omnipay\Adyen\Message\Request\FetchIssuersRequest;
@@ -13,7 +14,7 @@ use Omnipay\Common\GatewayInterface;
 class Gateway extends AbstractGateway implements GatewayInterface
 {
 
-    use ContextTrait;
+    use ContextTrait, ApiTrait;
 
     public function getName()
     {
