@@ -1,29 +1,28 @@
 {
-    "name": "afosto/omnipay-adyen",
-    "type": "library",
-    "description": "Adyen driver for the Omnipay payment processing library",
-    "keywords": [
-        "adyen",
-        "gateway",
-        "merchant",
-        "omnipay",
-        "pay",
-        "payment"
-    ],
-    "license": "Apache-2.0",
-    "authors": [
-        {
-            "name": "Afosto Team",
-            "homepage": "https://afosto.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": { "Omnipay\\Adyen\\" : "src/" }
-    },
-    "require": {
-        "omnipay/common": "~2.2"
-    },
-    "require-dev": {
-        "omnipay/tests": "~2.0"
+  "name": "afosto/omnipay-adyen",
+  "type": "library",
+  "description": "Adyen driver for the Omnipay payment processing library",
+  "keywords": [
+    "adyen",
+    "gateway",
+    "merchant",
+    "omnipay",
+    "pay",
+    "payment"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Afosto Team",
+      "homepage": "https://afosto.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Omnipay\\Adyen\\": "src/"
+    }
+  },
+  "require": {
+    "league/omnipay": "^3"
+  }
 }

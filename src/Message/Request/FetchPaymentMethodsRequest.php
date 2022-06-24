@@ -16,8 +16,7 @@ class FetchPaymentMethodsRequest extends AbstractAdyenRequest
      */
     public function getData()
     {
-        $this->validate('apiKey');
-
+        $this->validate('apiKey', 'merchantAccount', 'apiBaseUrl');
 
         $amount = null;
         if ($this->getAmountInteger() || $this->getCurrency()) {

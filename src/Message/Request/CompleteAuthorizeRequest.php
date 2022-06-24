@@ -53,6 +53,9 @@ class CompleteAuthorizeRequest extends AbstractAdyenRequest
 
     public function getData()
     {
+
+        $this->validate('apiKey', 'merchantAccount', 'apiBaseUrl', 'amount', 'currency', 'transactionId');
+
         $data = null;
 
         if ($this->getRedirectResult() !== null) {

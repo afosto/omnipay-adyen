@@ -23,10 +23,10 @@ class Gateway extends AbstractGateway implements GatewayInterface
     public function getDefaultParameters()
     {
         return [
-            'apiKey'          => '',
-            'merchantAccount' => '',
-            'channel'         => 'web',
+            'apiKey'          => null,
+            'merchantAccount' => null,
             'apiBaseUrl'      => null,
+            'channel'         => 'web',
             'version'         => 'v69',
             'shopperLocale'   => 'nl-NL',
             'countryCode'     => 'NL',
@@ -68,7 +68,7 @@ class Gateway extends AbstractGateway implements GatewayInterface
      */
     public function completeAuthorize(array $parameters = [])
     {
-        /** @var AuthorizeRequest $request */
+        /** @var CompleteAuthorizeRequest $request */
         $request = $this->createRequest(CompleteAuthorizeRequest::class, $parameters);
 
         return $request;

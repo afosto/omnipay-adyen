@@ -43,7 +43,7 @@ trait ApiTrait
         $this->setParameter('merchantAccount', $value);
     }
 
-    public function getMerchantAccount($value)
+    public function getMerchantAccount()
     {
         return $this->getParameter('merchantAccount');
     }

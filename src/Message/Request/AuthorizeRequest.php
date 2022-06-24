@@ -25,9 +25,10 @@ class AuthorizeRequest extends AbstractAdyenRequest
         return AuthorizeResponse::class;
     }
 
+
     public function getData()
     {
-        $this->validate('apiKey', 'amount', 'currency', 'transactionId');
+        $this->validate('apiKey', 'merchantAccount', 'apiBaseUrl', 'amount', 'currency', 'transactionId');
 
         $items = [];
         if ($this->getItems() != null) {
@@ -106,9 +107,6 @@ class AuthorizeRequest extends AbstractAdyenRequest
             $data['shopperName'] = $this->getCard()->getName();
             $data['telephoneNumber'] = $this->getCard()->getPhone();
         }
-
-        echo json_encode($data);
-        exit();
 
         return $data;
     }
