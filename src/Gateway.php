@@ -2,111 +2,75 @@
 
 namespace Omnipay\Adyen;
 
-class Gateway extends \Omnipay\Common\AbstractGateway {
+use Omnipay\Adyen\Message\Request\CompleteAuthorizeRequest;
+use Omnipay\Adyen\Message\Request\ContextTrait;
+use Omnipay\Adyen\Message\Request\FetchIssuersRequest;
+use Omnipay\Adyen\Message\Request\FetchPaymentMethodsRequest;
+use Omnipay\Adyen\Message\Request\AuthorizeRequest;
+use Omnipay\Common\AbstractGateway;
+use Omnipay\Common\GatewayInterface;
 
-    /**
-     * @return string
-     */
-    public function getName() {
+class Gateway extends AbstractGateway implements GatewayInterface
+{
+
+    use ContextTrait;
+
+    public function getName()
+    {
         return 'Adyen';
     }
 
-    /**
-     * @return array
-     */
-    public function getDefaultParameters() {
+    public function getDefaultParameters()
+    {
         return [
-            'secret'          => '',
-            'sessionLifetime' => '',
+            'apiKey'          => '',
             'merchantAccount' => '',
-            'skinCode'        => '',
-            'daysToShipping'  => '10',
-            'webhookSecret' => '',
+            'channel'         => 'web',
+            'apiBaseUrl'      => null,
+            'version'         => 'v69',
+            'shopperLocale'   => 'nl-NL',
+            'countryCode'     => 'NL',
         ];
     }
 
-    /**
-     * @return string|null
-     */
-    public function getSessionLifetime() {
-        return $this->getParameter('sessionLifetime');
+    public function fetchPaymentMethods(array $parameters = [])
+    {
+        /** @var FetchPaymentMethodsRequest $request */
+        $request = $this->createRequest(FetchPaymentMethodsRequest::class, $parameters);
+
+        return $request;
     }
 
-    /**
-     * @param string $value
-     *
-     * @return $this
-     */
-    public function setSessionLifetime($value) {
-        return $this->setParameter('sessionLifetime', $value);
-    }
+    public function fetchIssuers(array $parameters = [])
+    {
+        /** @var FetchIssuersRequest $request */
+        $request = $this->createRequest(FetchIssuersRequest::class, $parameters);
 
-    /**
-     * @return string|null
-     */
-    public function getMerchantAccount() {
-        return $this->getParameter('merchantAccount');
-    }
-
-    public function setMerchantAccount($value) {
-        return $this->setParameter('merchantAccount', $value);
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getSkinCode() {
-        return $this->getParameter('skinCode');
-    }
-
-    public function setSkinCode($value) {
-        return $this->setParameter('skinCode', $value);
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getSecret() {
-        return $this->getParameter('secret');
-    }
-
-    public function setSecret($value) {
-        return $this->setParameter('secret', $value);
+        return $request;
     }
 
     /**
      * @param array $parameters
-     *
-     * @return \Omnipay\Adyen\Message\PurchaseRequest
+     * @return AuthorizeRequest
      */
-    public function purchase(array $parameters = []) {
-        return $this->createRequest('Omnipay\Adyen\Message\PurchaseRequest', $parameters);
+    public function authorize(array $parameters = [])
+    {
+        /** @var AuthorizeRequest $request */
+        $request = $this->createRequest(AuthorizeRequest::class, $parameters);
+
+        return $request;
     }
+
 
     /**
      * @param array $parameters
-     *
-     * @return \Omnipay\Adyen\Message\CompletePurchaseRequest
+     * @return CompleteAuthorizeRequest
      */
-    public function completePurchase(array $parameters = []) {
-        return $this->createRequest('Omnipay\Adyen\Message\CompletePurchaseRequest', $parameters);
-    }
+    public function completeAuthorize(array $parameters = [])
+    {
+        /** @var AuthorizeRequest $request */
+        $request = $this->createRequest(CompleteAuthorizeRequest::class, $parameters);
 
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Adyen\Message\FetchPaymentMethodsRequest
-     */
-    public function fetchPaymentMethods(array $parameters = array()) {
-        return $this->createRequest('\Omnipay\Adyen\Message\FetchPaymentMethodsRequest', $parameters);
-    }
-
-    /**
-     * @param array $parameters
-     *
-     * @return \Omnipay\Adyen\Message\FetchIssuersRequest
-     */
-    public function fetchIssuers(array $parameters = array()) {
-        return $this->createRequest('\Omnipay\Adyen\Message\FetchIssuersRequest', $parameters);
+        return $request;
     }
 }

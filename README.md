@@ -1,9 +1,18 @@
-# Omnipay: Adyen
+# Omnipay: Adyen Checkout Gateway
 
 **Adyen driver for the Omnipay PHP payment processing library**
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements Adyen support for Omnipay.
+processing library. This package implements Adyen support for Omnipay.
+
+
+## Installation
+
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `afosto/omnipay-adyen` with Composer:
+
+```
+composer require league/omnipay afosto/omnipay-adyen
+```
 
 ## Basic Usage
 
@@ -26,18 +35,3 @@ you can subscribe to.
 
 If you believe you have found a bug, please report it using the [GitHub issue tracker](https://github.com/afosto/omnipay-adyen/issues),
 or better yet, fork the library and submit a pull request.
-
-## License
-Copyright 2017 Afosto SaaS B.V.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
