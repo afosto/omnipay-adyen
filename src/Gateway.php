@@ -29,8 +29,8 @@ class Gateway extends AbstractGateway implements GatewayInterface
             'apiBaseUrl'      => null,
             'channel'         => 'web',
             'version'         => 'v69',
-            'shopperLocale'   => 'nl-NL',
-            'countryCode'     => 'NL',
+            'shopperLocale'   => null,
+            'countryCode'     => null,
         ];
     }
 
