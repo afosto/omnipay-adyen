@@ -71,11 +71,12 @@ class AuthorizeRequest extends AbstractAdyenRequest
 
         if ($this->getCard() != null) {
             $rootAddress = [
-                'city'            => $this->getCard()->getCity(),
-                'country'         => $this->getCard()->getCountry(),
-                'street'          => $this->getCard()->getAddress1(),
-                'postalCode'      => $this->getCard()->getPostcode(),
-                'stateOrProvince' => $this->getCard()->getState(),
+                'city'              => $this->getCard()->getCity(),
+                'country'           => $this->getCard()->getCountry(),
+                'houseNumberOrName' => '',
+                'street'            => $this->getCard()->getAddress1(),
+                'postalCode'        => $this->getCard()->getPostcode(),
+                'stateOrProvince'   => $this->getCard()->getState(),
             ];
 
 
