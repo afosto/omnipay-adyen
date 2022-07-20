@@ -8,7 +8,7 @@ use Omnipay\Common\Exception\InvalidRequestException;
 class FetchPaymentMethodsRequest extends AbstractAdyenRequest
 {
 
-    use ContextTrait;
+    use PurchaseTrait;
 
     /**
      * @return array

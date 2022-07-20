@@ -9,7 +9,7 @@ use Omnipay\Common\Message\ResponseInterface;
 abstract class AbstractAdyenRequest extends AbstractRequest
 {
 
-    use ApiTrait;
+    use AuthTrait;
 
     const POST = 'POST';
     const GET = 'GET';

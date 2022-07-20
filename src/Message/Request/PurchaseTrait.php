@@ -2,7 +2,7 @@
 
 namespace Omnipay\Adyen\Message\Request;
 
-trait ContextTrait
+trait PurchaseTrait
 {
 
     abstract protected function getParameter($key);

@@ -2,19 +2,19 @@
 
 namespace Omnipay\Adyen;
 
-use Omnipay\Adyen\Message\Request\ApiTrait;
-use Omnipay\Adyen\Message\Request\CompleteAuthorizeRequest;
-use Omnipay\Adyen\Message\Request\ContextTrait;
+use Omnipay\Adyen\Message\Request\AuthTrait;
+use Omnipay\Adyen\Message\Request\CompletePurchaseRequest;
+use Omnipay\Adyen\Message\Request\PurchaseTrait;
 use Omnipay\Adyen\Message\Request\FetchIssuersRequest;
 use Omnipay\Adyen\Message\Request\FetchPaymentMethodsRequest;
-use Omnipay\Adyen\Message\Request\AuthorizeRequest;
+use Omnipay\Adyen\Message\Request\PurchaseRequest;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\GatewayInterface;
 
 class Gateway extends AbstractGateway implements GatewayInterface
 {
 
-    use ContextTrait, ApiTrait;
+    use PurchaseTrait, AuthTrait;
 
     public function getName()
     {
@@ -31,6 +31,7 @@ class Gateway extends AbstractGateway implements GatewayInterface
             'version'         => 'v69',
             'shopperLocale'   => null,
             'countryCode'     => null,
+            'flow'            => PurchaseRequest::FLOW_DEFAULT,
         ];
     }
 
@@ -52,12 +53,12 @@ class Gateway extends AbstractGateway implements GatewayInterface
 
     /**
      * @param array $parameters
-     * @return AuthorizeRequest
+     * @return PurchaseRequest
      */
-    public function authorize(array $parameters = [])
+    public function purchase(array $parameters = [])
     {
-        /** @var AuthorizeRequest $request */
-        $request = $this->createRequest(AuthorizeRequest::class, $parameters);
+        /** @var PurchaseRequest $request */
+        $request = $this->createRequest(PurchaseRequest::class, $parameters);
 
         return $request;
     }
@@ -65,12 +66,12 @@ class Gateway extends AbstractGateway implements GatewayInterface
 
     /**
      * @param array $parameters
-     * @return CompleteAuthorizeRequest
+     * @return CompletePurchaseRequest
      */
-    public function completeAuthorize(array $parameters = [])
+    public function completePurchase(array $parameters = [])
     {
-        /** @var CompleteAuthorizeRequest $request */
-        $request = $this->createRequest(CompleteAuthorizeRequest::class, $parameters);
+        /** @var CompletePurchaseRequest $request */
+        $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);
 
         return $request;
     }

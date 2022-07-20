@@ -2,13 +2,16 @@
 
 namespace Omnipay\Adyen\Message\Request;
 
-use Omnipay\Adyen\Message\Response\AuthorizeResponse;
+use Omnipay\Adyen\Message\Response\PurchaseResponse;
 use Omnipay\Common\Item;
 
-class AuthorizeRequest extends AbstractAdyenRequest
+class PurchaseRequest extends AbstractAdyenRequest
 {
 
-    use ContextTrait;
+    const FLOW_BY_LINK = "BY_LINK";
+    const FLOW_DEFAULT = "DEFAULT";
+
+    use PurchaseTrait;
 
     protected function getRequestMethod()
     {
@@ -17,12 +20,26 @@ class AuthorizeRequest extends AbstractAdyenRequest
 
     protected function getEndpoint()
     {
-        return '/payments';
+        if ($this->getFlow() === self::FLOW_DEFAULT) {
+            return '/payments';
+        } else {
+            return '/paymentLinks';
+        }
     }
 
     protected function getResponseClass()
     {
-        return AuthorizeResponse::class;
+        return PurchaseResponse::class;
+    }
+
+    public function setFlow($value)
+    {
+        $this->setParameter('paymentFlow', $value);
+    }
+
+    public function getFlow()
+    {
+        return $this->getParameter('paymentFlow');
     }
 
 
@@ -44,15 +61,6 @@ class AuthorizeRequest extends AbstractAdyenRequest
                 ];
             }
         }
-
-        $paymentMethod = [
-            'type' => $this->getPaymentMethod()
-        ];
-
-        if ($this->getIssuer() != "") {
-            $paymentMethod['issuer'] = $this->getIssuer();
-        }
-
         $data = [
             'merchantAccount' => $this->getMerchantAccount(),
             'returnUrl'       => $this->getReturnUrl(),
@@ -62,11 +70,9 @@ class AuthorizeRequest extends AbstractAdyenRequest
                 'currency' => $this->getCurrency()
             ],
             'lineItems'       => $items,
-            'channel'         => $this->getChannel(),
             'shopperLocale'   => $this->getLocale(),
-            'paymentMethod'   => $paymentMethod,
             'reference'       => $this->getTransactionId(),
-            'shopperIP'       => $this->getClientIp(),
+
         ];
 
         if ($this->getCard() != null) {
@@ -108,6 +114,19 @@ class AuthorizeRequest extends AbstractAdyenRequest
             $data['shopperName'] = $this->getCard()->getName();
             $data['telephoneNumber'] = $this->getCard()->getPhone();
         }
+
+        if ($this->getFlow() === self::FLOW_DEFAULT) {
+            $paymentMethod = ['type' => $this->getPaymentMethod()];
+            if ($this->getIssuer() != "") {
+                $paymentMethod['issuer'] = $this->getIssuer();
+            }
+            $data['paymentMethod'] = $paymentMethod;
+            $data['channel'] = $this->getChannel();
+            $data['shopperIP'] = $this->getClientIp();
+        } else {
+            $data['allowedPaymentMethods'] = [$this->getPaymentMethod()];
+        }
+
 
         return $data;
     }

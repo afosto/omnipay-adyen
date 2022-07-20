@@ -2,9 +2,9 @@
 
 namespace Omnipay\Adyen\Message\Request;
 
-use Omnipay\Adyen\Message\Response\CompleteAuthorizeResponse;
+use Omnipay\Adyen\Message\Response\CompletePurchaseResponse;
 
-class CompleteAuthorizeRequest extends AbstractAdyenRequest
+class CompletePurchaseRequest extends AbstractAdyenRequest
 {
     public function setPaymentData($value)
     {
@@ -48,7 +48,7 @@ class CompleteAuthorizeRequest extends AbstractAdyenRequest
 
     protected function getResponseClass()
     {
-        return CompleteAuthorizeResponse::class;
+        return CompletePurchaseResponse::class;
     }
 
     public function getData()

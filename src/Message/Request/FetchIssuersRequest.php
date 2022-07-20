@@ -7,7 +7,7 @@ use Omnipay\Adyen\Message\Response\FetchIssuersResponse;
 class FetchIssuersRequest extends FetchPaymentMethodsRequest
 {
 
-    use ContextTrait;
+    use PurchaseTrait;
 
     protected function getResponseClass()
     {

@@ -4,7 +4,7 @@ namespace Omnipay\Adyen\Message\Response;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
 
-class AuthorizeResponse extends AbstractAdyenResponse implements RedirectResponseInterface
+class PurchaseResponse extends AbstractAdyenResponse implements RedirectResponseInterface
 {
 
     public function isSuccessful()
