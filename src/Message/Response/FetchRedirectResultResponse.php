@@ -38,6 +38,14 @@ class FetchRedirectResultResponse extends AbstractAdyenResponse
         return $this->data['pspReference'];
     }
 
+    /**
+     * @return null|string
+     */
+    public function getTransactionId()
+    {
+        return $this->data['merchantReference'];
+    }
+
 
     /**
      * @return float|null
