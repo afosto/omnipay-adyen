@@ -2,10 +2,11 @@
 
 namespace Omnipay\Adyen\Message\Request;
 
+use Omnipay\Adyen\Message\Response\LinkResponse;
 use Omnipay\Adyen\Message\Response\PurchaseResponse;
 use Omnipay\Common\Item;
 
-class PurchaseRequest extends AbstractAdyenRequest
+class LinkRequest extends AbstractAdyenRequest
 {
 
 
@@ -19,13 +20,13 @@ class PurchaseRequest extends AbstractAdyenRequest
     protected function getEndpoint()
     {
 
-        return '/payments';
+        return '/paymentLinks';
 
     }
 
     protected function getResponseClass()
     {
-        return PurchaseResponse::class;
+        return LinkResponse::class;
     }
 
 
@@ -47,26 +48,18 @@ class PurchaseRequest extends AbstractAdyenRequest
                 ];
             }
         }
-        $paymentMethod = ['type' => $this->getPaymentMethod()];
-        if ($this->getIssuer() != "") {
-            $paymentMethod['issuer'] = $this->getIssuer();
-        }
-
-
         $data = [
-            'merchantAccount' => $this->getMerchantAccount(),
-            'returnUrl'       => $this->getReturnUrl(),
-            'countryCode'     => $this->getCountry(),
-            'amount'          => [
+            'merchantAccount'       => $this->getMerchantAccount(),
+            'returnUrl'             => $this->getReturnUrl(),
+            'countryCode'           => $this->getCountry(),
+            'amount'                => [
                 'value'    => $this->getAmountInteger(),
                 'currency' => $this->getCurrency()
             ],
-            'lineItems'       => $items,
-            'shopperLocale'   => $this->getLocale(),
-            'reference'       => $this->getTransactionId(),
-            'paymentMethod'   => $paymentMethod,
-            'channel'         => $this->getChannel(),
-            'shopperIP'       => $this->getClientIp(),
+            'lineItems'             => $items,
+            'shopperLocale'         => $this->getLocale(),
+            'reference'             => $this->getTransactionId(),
+            'allowedPaymentMethods' => [$this->getPaymentMethod()],
 
         ];
 
@@ -109,7 +102,6 @@ class PurchaseRequest extends AbstractAdyenRequest
             $data['shopperName'] = $this->getCard()->getName();
             $data['telephoneNumber'] = $this->getCard()->getPhone();
         }
-
 
         return $data;
     }

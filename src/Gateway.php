@@ -4,10 +4,12 @@ namespace Omnipay\Adyen;
 
 use Omnipay\Adyen\Message\Request\AuthTrait;
 use Omnipay\Adyen\Message\Request\CompletePurchaseRequest;
+use Omnipay\Adyen\Message\Request\LinkRequest;
 use Omnipay\Adyen\Message\Request\PurchaseTrait;
 use Omnipay\Adyen\Message\Request\FetchIssuersRequest;
 use Omnipay\Adyen\Message\Request\FetchPaymentMethodsRequest;
 use Omnipay\Adyen\Message\Request\PurchaseRequest;
+use Omnipay\Adyen\Message\Response\LinkResponse;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\GatewayInterface;
 
@@ -31,7 +33,6 @@ class Gateway extends AbstractGateway implements GatewayInterface
             'version'         => 'v69',
             'shopperLocale'   => null,
             'countryCode'     => null,
-            'flow'            => PurchaseRequest::FLOW_DEFAULT,
         ];
     }
 
@@ -59,6 +60,19 @@ class Gateway extends AbstractGateway implements GatewayInterface
     {
         /** @var PurchaseRequest $request */
         $request = $this->createRequest(PurchaseRequest::class, $parameters);
+
+        return $request;
+    }
+
+
+    /**
+     * @param array $parameters
+     * @return LinkRequest
+     */
+    public function link(array $parameters = [])
+    {
+        /** @var LinkRequest $request */
+        $request = $this->createRequest(LinkRequest::class, $parameters);
 
         return $request;
     }
