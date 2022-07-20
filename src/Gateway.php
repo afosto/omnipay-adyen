@@ -5,6 +5,7 @@ namespace Omnipay\Adyen;
 use Omnipay\Adyen\Message\Request\AuthTrait;
 use Omnipay\Adyen\Message\Request\CompletePurchaseRequest;
 use Omnipay\Adyen\Message\Request\FetchLinkRequest;
+use Omnipay\Adyen\Message\Request\FetchRedirectResultRequest;
 use Omnipay\Adyen\Message\Request\LinkRequest;
 use Omnipay\Adyen\Message\Request\PurchaseTrait;
 use Omnipay\Adyen\Message\Request\FetchIssuersRequest;
@@ -57,6 +58,14 @@ class Gateway extends AbstractGateway implements GatewayInterface
     {
         /** @var FetchLinkRequest $request */
         $request = $this->createRequest(FetchLinkRequest::class, $parameters);
+
+        return $request;
+    }
+
+    public function fetchRedirectResult(array $parameters = []): FetchRedirectResultRequest
+    {
+        /** @var FetchRedirectResultRequest $request */
+        $request = $this->createRequest(FetchRedirectResultRequest::class, $parameters);
 
         return $request;
     }
