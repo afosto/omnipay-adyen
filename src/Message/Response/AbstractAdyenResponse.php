@@ -11,8 +11,7 @@ abstract class AbstractAdyenResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-
-        return substr($this->getCode(), 0, 1) == "2";
+        return $this->data != [] && $this->data != null;
     }
 
     /**

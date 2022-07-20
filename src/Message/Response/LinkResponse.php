@@ -19,8 +19,8 @@ class LinkResponse extends AbstractAdyenResponse implements RedirectResponseInte
 
     public function getTransactionReference()
     {
-        if (isset($this->data['reference'])) {
-            return $this->data['reference'];
+        if (isset($this->data['id'])) {
+            return $this->data['id'];
         }
         return parent::getTransactionReference();
     }
