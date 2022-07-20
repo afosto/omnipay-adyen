@@ -35,7 +35,7 @@ class FetchRedirectResultResponse extends AbstractAdyenResponse
      */
     public function getTransactionReference()
     {
-        return $this->data['id'];
+        return $this->data['pspReference'];
     }
 
 
