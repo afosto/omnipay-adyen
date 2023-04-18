@@ -54,19 +54,19 @@ class PurchaseRequest extends AbstractAdyenRequest
 
 
         $data = [
-            'merchantAccount' => $this->getMerchantAccount(),
-            'returnUrl'       => $this->getReturnUrl(),
-            'countryCode'     => $this->getCountry(),
-            'amount'          => [
+            'returnUrl'        => $this->getReturnUrl(),
+            'countryCode'      => $this->getCountry(),
+            'amount'           => [
                 'value'    => $this->getAmountInteger(),
                 'currency' => $this->getCurrency()
             ],
-            'lineItems'       => $items,
-            'shopperLocale'   => $this->getLocale(),
-            'reference'       => $this->getTransactionId(),
-            'paymentMethod'   => $paymentMethod,
-            'channel'         => $this->getChannel(),
-            'shopperIP'       => $this->getClientIp(),
+            'lineItems'        => $items,
+            'shopperLocale'    => $this->getLocale(),
+            'reference'        => $this->getTransactionId(),
+            'paymentMethod'    => $paymentMethod,
+            'channel'          => $this->getChannel(),
+            'shopperIP'        => $this->getClientIp(),
+            'shopperReference' => $this->getDescription(),
 
         ];
 
@@ -80,7 +80,6 @@ class PurchaseRequest extends AbstractAdyenRequest
                 'stateOrProvince'   => $this->getCard()->getState(),
             ];
 
-
             $billingAddress = [
                 'city'            => $this->getCard()->getBillingCity(),
                 'country'         => $this->getCard()->getBillingCountry(),
@@ -90,6 +89,8 @@ class PurchaseRequest extends AbstractAdyenRequest
             ];
             array_filter($billingAddress);
             $billingAddress = array_merge($rootAddress, $billingAddress);
+
+            $data['countryCode'] = $billingAddress['country'];
 
 
             $shippingAddress = [
