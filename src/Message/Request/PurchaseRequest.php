@@ -54,6 +54,7 @@ class PurchaseRequest extends AbstractAdyenRequest
 
 
         $data = [
+            'merchantAccount'  => $this->getMerchantAccount(),
             'returnUrl'        => $this->getReturnUrl(),
             'countryCode'      => $this->getCountry(),
             'amount'           => [

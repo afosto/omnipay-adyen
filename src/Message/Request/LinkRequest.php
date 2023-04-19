@@ -60,6 +60,8 @@ class LinkRequest extends AbstractAdyenRequest
             'shopperLocale'         => $this->getLocale(),
             'reference'             => $this->getTransactionId(),
             'allowedPaymentMethods' => [$this->getPaymentMethod()],
+            'shopperReference'      => $this->getDescription(),
+            'shopperIP'             => $this->getClientIp(),
 
         ];
 
@@ -84,6 +86,7 @@ class LinkRequest extends AbstractAdyenRequest
             array_filter($billingAddress);
             $billingAddress = array_merge($rootAddress, $billingAddress);
 
+            $data['countryCode'] = $billingAddress['country'];
 
             $shippingAddress = [
                 'city'            => $this->getCard()->getShippingCity(),
