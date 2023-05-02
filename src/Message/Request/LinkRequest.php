@@ -61,7 +61,6 @@ class LinkRequest extends AbstractAdyenRequest
             'reference'             => $this->getDescription(),
             'allowedPaymentMethods' => [$this->getPaymentMethod()],
             'shopperReference'      => $this->getDescription(),
-            'shopperIP'             => $this->getClientIp(),
 
         ];
 
