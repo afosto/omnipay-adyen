@@ -63,7 +63,7 @@ class PurchaseRequest extends AbstractAdyenRequest
             ],
             'lineItems'        => $items,
             'shopperLocale'    => $this->getLocale(),
-            'reference'        => $this->getDescription(),
+            'reference'        => $this->getTransactionId(),
             'paymentMethod'    => $paymentMethod,
             'channel'          => $this->getChannel(),
             'shopperIP'        => $this->getClientIp(),

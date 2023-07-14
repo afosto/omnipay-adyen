@@ -58,7 +58,7 @@ class LinkRequest extends AbstractAdyenRequest
             ],
             'lineItems'             => $items,
             'shopperLocale'         => $this->getLocale(),
-            'reference'             => $this->getDescription(),
+            'reference'             => $this->getTransactionId(),
             'allowedPaymentMethods' => [$this->getPaymentMethod()],
             'shopperReference'      => $this->getDescription(),
 
