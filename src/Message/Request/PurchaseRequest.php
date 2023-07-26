@@ -54,20 +54,19 @@ class PurchaseRequest extends AbstractAdyenRequest
 
 
         $data = [
-            'merchantAccount'  => $this->getMerchantAccount(),
-            'returnUrl'        => $this->getReturnUrl(),
-            'countryCode'      => $this->getCountry(),
-            'amount'           => [
+            'merchantAccount'   => $this->getMerchantAccount(),
+            'returnUrl'         => $this->getReturnUrl(),
+            'countryCode'       => $this->getCountry(),
+            'amount'            => [
                 'value'    => $this->getAmountInteger(),
                 'currency' => $this->getCurrency()
             ],
-            'lineItems'        => $items,
-            'shopperLocale'    => $this->getLocale(),
-            'reference'        => $this->getTransactionId(),
-            'paymentMethod'    => $paymentMethod,
-            'channel'          => $this->getChannel(),
-            'shopperIP'        => $this->getClientIp(),
-            'shopperReference' => $this->getDescription(),
+            'lineItems'         => $items,
+            'shopperLocale'     => $this->getLocale(),
+            'reference'         => $this->getTransactionId(),
+            'paymentMethod'     => $paymentMethod,
+            'channel'           => $this->getChannel(),
+            'shopperIP'         => $this->getClientIp(),
 
         ];
 
