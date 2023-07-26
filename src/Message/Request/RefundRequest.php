@@ -32,15 +32,12 @@ class RefundRequest extends AbstractAdyenRequest
     {
         $this->validate('apiKey', 'merchantAccount', 'apiBaseUrl', 'amount', 'currency', 'originalReference');
 
-
         $data = [
-            'merchantAccount'    => $this->getMerchantAccount(),
-            'modificationAmount' => [
+            'merchantAccount' => $this->getMerchantAccount(),
+            'amount'          => [
                 'value'    => $this->getAmountInteger(),
                 'currency' => $this->getCurrency()
             ],
-            'reference'          => $this->getShopperReference(),
-            'originalReference'  => $this->getOriginalReference(),
         ];
 
         return $data;
@@ -50,4 +47,10 @@ class RefundRequest extends AbstractAdyenRequest
     {
         return $this->getParameter('originalReference');
     }
+
+    public function setOriginalReference($value)
+    {
+        return $this->setParameter('originalReference', $value);
+    }
+
 }

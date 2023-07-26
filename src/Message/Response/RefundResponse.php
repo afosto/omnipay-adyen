@@ -2,6 +2,7 @@
 
 namespace Omnipay\Adyen\Message\Response;
 
+use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Common\Message\ResponseInterface;
 
 class RefundResponse extends AbstractAdyenResponse implements ResponseInterface
@@ -9,7 +10,7 @@ class RefundResponse extends AbstractAdyenResponse implements ResponseInterface
 
     public function isSuccessful()
     {
-        if (isset($this->data['response']) && $this->data['response'] == '[refund-received]') {
+        if (isset($this->data['status']) && $this->data['status'] == 'received') {
             return true;
         }
 
