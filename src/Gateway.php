@@ -11,6 +11,7 @@ use Omnipay\Adyen\Message\Request\PurchaseTrait;
 use Omnipay\Adyen\Message\Request\FetchIssuersRequest;
 use Omnipay\Adyen\Message\Request\FetchPaymentMethodsRequest;
 use Omnipay\Adyen\Message\Request\PurchaseRequest;
+use Omnipay\Adyen\Message\Request\RefundRequest;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\GatewayInterface;
 
@@ -104,6 +105,17 @@ class Gateway extends AbstractGateway implements GatewayInterface
     {
         /** @var CompletePurchaseRequest $request */
         $request = $this->createRequest(CompletePurchaseRequest::class, $parameters);
+
+        return $request;
+    }
+    /**
+     * @param  array $parameters
+     * @return RefundRequest
+     */
+    public function refund(array $parameters = [])
+    {
+        /** @var RefundRequest $request */
+        $request = $this->createRequest(RefundRequest::class, $parameters);
 
         return $request;
     }
