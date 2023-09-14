@@ -52,7 +52,9 @@ class FetchRedirectResultResponse extends AbstractAdyenResponse
      */
     public function getAmount()
     {
-        return $this->data['amount']['value'] / 100;
+        if (isset($this->data['amount']['value'])) {
+            return $this->data['amount']['value'] / 100;
+        }
     }
 
     /**
